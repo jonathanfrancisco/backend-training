@@ -22,16 +22,41 @@ WHERE EXISTS(SELECT p1.pid FROM parts p1 WHERE catalog.pid = p1.pid AND EXISTS(
 ));
 
 /*5*/
+SELECT catalog.sid
+FROM catalog WHERE NOT EXISTS(
+    SELECT parts.pid
+    FROM parts
+    WHERE catalog.pid != parts.pid
+);
 
 /*6*/
+SELECT catalog.sid
+FROM catalog WHERE NOT EXISTS(
+    SELECT parts.pid
+    FROM parts
+    WHERE parts.color != 'red'
+);
 
 /*7*/
+SELECT catalog.sid
+FROM catalog WHERE NOT EXISTS(
+    SELECT parts.pid
+    FROM parts
+    WHERE parts.color NOT IN('red', 'green')
+);
 
 /*8*/
 
 /*9*/
 
 /*10*/
+SELECT DISTINCT 1.pid
+FROM catalog AS c1
+WHERE EXISTS (
+    SELECT c2.sid
+    FROM catalog AS c2
+    WHERE c2.pid = c1.pid AND c2.sid != c1.sid 
+);
 
 /*11*/
 SELECT parts.pid
