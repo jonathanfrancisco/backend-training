@@ -61,7 +61,7 @@ FROM catalog WHERE NOT EXISTS(
 /*9. Find pairs of sids such that the supplier with the first sid charges more for some part than the supplier with the second sid.*/
 
 /*10. Find the pids of parts that are supplied by at least two different suppliers.*/
-SELECT DISTINCT 1.pid
+SELECT DISTINCT c1.pid
 FROM catalog AS c1
 WHERE EXISTS (
     SELECT c2.sid
@@ -79,7 +79,7 @@ ORDER BY catalog.cost DESC LIMIT 1;
 
 
 /*12. Find the pids of parts supplied by every supplier at less than 4,000. (If any supplier either does not supply the part or charges more than 4000 for it, the part is not selected.*/
-SELECT supplier.sname, parts.pid, catalog.cost
+SELECT parts.pid, catalog.cost
 FROM parts
 INNER JOIN catalog ON catalog.pid = parts.pid
 INNER JOIN supplier ON supplier.sid = catalog.sid
