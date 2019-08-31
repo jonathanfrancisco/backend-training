@@ -21,7 +21,7 @@ WHERE EXISTS(SELECT p1.pid FROM parts p1 WHERE catalog.pid = p1.pid AND EXISTS(
     SELECT p2.color FROM parts p2 WHERE (p2.color = 'green' OR p2.color = 'red') AND catalog.pid = p2.pid
 ));
 
-/*Find the sids of suppliers who supply every part.*/
+/*5. Find the sids of suppliers who supply every part.*/
 SELECT catalog.sid
 FROM catalog WHERE NOT EXISTS(
     SELECT parts.pid
