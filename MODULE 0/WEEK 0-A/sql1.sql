@@ -38,7 +38,7 @@ FROM catalog WHERE NOT EXISTS(
 );
 
 /*7. Find the sids of suppliers who supply every red or green part.*/
-SELECT *
+SELECT catalog.sid
 FROM catalog WHERE NOT EXISTS(
     SELECT parts.pid
     FROM parts
